@@ -1,12 +1,16 @@
 const container = document.querySelector('.container');
 
+let gridOn = 0;
+
 function toggleLines() {
 	const squares = document.querySelectorAll('.square');
 	squares.forEach((square) => {
 		if (square.style.border) {
 			square.style.border = '';
+			gridOn = 0;
 		} else {
 			square.style.border = '0.1px solid rgb(157, 157, 157)';
+			gridOn = 1;
 		}
 	})
 }
@@ -61,6 +65,9 @@ function createGrid(perSide) {
 		square.className = 'square';
 		square.style.minWidth = width + 'px';
 		square.style.height = width + 'px';
+		if (gridOn == 1) {
+			square.style.border = '0.1px solid rgb(157, 157, 157)';
+		}
 		container.appendChild(square);
 	}
 
