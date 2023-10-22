@@ -4,26 +4,43 @@ function random(number) {
 	return Math.floor(Math.random() * (number + 1));
 }
 
+function handleHover(e) {
+	e.target.style.backgroundColor = 'rgb(0, 0, 0)';
+}
+
 function addHover() {
 	const squares = document.querySelectorAll('.square');
-	squares.forEach(square => square.addEventListener('mouseenter', function(e) {
-		e.target.style.backgroundColor = 'black';
-	}));
+	squares.forEach(square => square.removeEventListener('mouseenter', handleRGB))
+	squares.forEach(square => square.addEventListener('mouseenter', handleHover));
+}
+
+function handleRGB(e) {
+	e.target.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
 }
 
 function addRGB() {
 	const squares = document.querySelectorAll('.square');
-	squares.forEach(square => square.addEventListener('mouseenter', function(e) {
-		e.target.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
-	}));
+	squares.forEach(square => square.removeEventListener('mouseenter', handleHover));
+	squares.forEach(square => square.addEventListener('mouseenter', handleRGB));
+}
+
+function handleDarkening(e) {
+	let bgClr = e.target.style.backgroundColor;
+	if (bgClr == 'rgb(0, 0, 0)') return;
+	let match = bgClr.match(/(\d\.\d)(?=\))/);
+	if (match == null) {
+		e.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+	} else {
+		let alpha = Number(match[0]);
+		e.target.style.backgroundColor = `rgba(0, 0, 0, ${alpha + 0.1})`;
+	}
 }
 
 function addDarkening() {
 	const squares = document.querySelectorAll('.square');
-	squares.forEach(square => square.addEventListener('mouseenter', function(e) {
-		
-		e.target.style.backgroundColor = 'black';
-	}));	
+	squares.forEach(square => square.removeEventListener('mouseenter', handleHover));
+	squares.forEach(square => square.removeEventListener('mouseenter', handleRGB));
+	squares.forEach(square => square.addEventListener('mouseenter', handleDarkening));
 }
 
 function createGrid(perSide) {
