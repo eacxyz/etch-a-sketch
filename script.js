@@ -7,8 +7,23 @@ function random(number) {
 function addHover() {
 	const squares = document.querySelectorAll('.square');
 	squares.forEach(square => square.addEventListener('mouseenter', function(e) {
+		e.target.style.backgroundColor = 'black';
+	}));
+}
+
+function addRGB() {
+	const squares = document.querySelectorAll('.square');
+	squares.forEach(square => square.addEventListener('mouseenter', function(e) {
 		e.target.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
 	}));
+}
+
+function addDarkening() {
+	const squares = document.querySelectorAll('.square');
+	squares.forEach(square => square.addEventListener('mouseenter', function(e) {
+		
+		e.target.style.backgroundColor = 'black';
+	}));	
 }
 
 function createGrid(perSide) {
