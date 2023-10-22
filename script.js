@@ -88,6 +88,7 @@ function newGrid() {
 	while (n < 0) {
 		n = prompt('ERROR: negative squares not possible');
 	}
+	if (n === null) return;
 	clearGrid();
 	createGrid(n);
 }
