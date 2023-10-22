@@ -1,5 +1,16 @@
 const container = document.querySelector('.container');
 
+function toggleLines() {
+	const squares = document.querySelectorAll('.square');
+	squares.forEach((square) => {
+		if (square.style.border) {
+			square.style.border = '';
+		} else {
+			square.style.border = '0.1px solid rgb(157, 157, 157)';
+		}
+	})
+}
+
 function random(number) {
 	return Math.floor(Math.random() * (number + 1));
 }
