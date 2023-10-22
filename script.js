@@ -1,5 +1,16 @@
 const container = document.querySelector('.container');
 
+function random(number) {
+	return Math.floor(Math.random() * (number + 1));
+}
+
+function addHover() {
+	const squares = document.querySelectorAll('.square');
+	squares.forEach(square => square.addEventListener('mouseenter', function(e) {
+		e.target.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+	}));
+}
+
 function createGrid(perSide) {
 	const width = 640 / perSide;
 	for (let i = 0; i < perSide * perSide; i++) {
@@ -10,10 +21,7 @@ function createGrid(perSide) {
 		container.appendChild(square);
 	}
 
-	const squares = document.querySelectorAll('.square');
-	squares.forEach(square => square.addEventListener('mouseenter', function(e) {
-		e.target.style.backgroundColor = 'blue';
-	}));
+	addHover();
 }
 
 function clearGrid() {
